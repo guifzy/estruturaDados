@@ -40,8 +40,8 @@ int main(void)
         total = i;
     printf("Average: %d\n", total + 1);
 
-   /*
     fclose(fh_input);
+ /*
     fh_input = fopen("in.txt", "r");
 
 
