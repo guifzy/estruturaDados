@@ -1,55 +1,26 @@
 #include <stdio.h>
-#include <stdbool.h>
 
-int main(void)
+int main()
 {
- 
-    FILE* fh_output;
+	FILE* arqv;
+	char nome_arquivo[50], conteudo[100];
+		
+	printf("Entre com o nome do arquivo, o ponto e a extensão: ");
+	scanf("%s", nome_arquivo);
 
-    fh_output = fopen("io.txt", "w");
+	arqv = fopen(nome_arquivo, "r");
 
-    int input = 0;
-    while (true)
-    {
-        printf("Enter # (-1 quits): ");
-        scanf("%d", &input);
-        if (input == -1) break;
-        else fprintf(fh_output, "%d\n", input);
-    }
+	if (arqv == NULL)
+	{
+		printf("Erro ao abrir arquivo.");
+		return 1;
+	}
 
-    fclose(fh_output);
+	while (fgets(conteudo, sizeof(conteudo), arqv) != NULL)
+	{
+		printf("%s", conteudo);
+	}
 
-    FILE* fh_input;
-    fh_input = fopen("io.txt", "r");
-
-    int finput = 0;
-    int lines = 0;
-    int numbers[100];
-
-    
-    while (fscanf(fh_input, "%d", &finput) != EOF)
-    {
-        
-        numbers[lines] = finput;
-        printf("file line %d: %d\n", lines + 1, finput);
-        lines++;
-    }
-
-    int total = 0;
-    for (int i = 0; i < lines; i++)
-        total = i;
-    printf("Average: %d\n", total + 1);
-
-   /*
-    fclose(fh_input);
-    fh_input = fopen("in.txt", "r");
-
-
-    fgets(buffer, 256, fh_input);
-    printf("Buffer: %s\n", buffer);
-
-    fclose(fh_input);
-    */
-
-    return 0;
+	fclose(arqv);
+	return 0;
 }
