@@ -21,6 +21,42 @@ int main()
 		printf("%s", conteudo);
 	}
 
+<<<<<<< HEAD
 	fclose(arqv);
 	return 0;
+=======
+    FILE* fh_input;
+    fh_input = fopen("io.txt", "r");
+
+    int finput = 0;
+    int lines = 0;
+    int numbers[100];
+
+    
+    while (fscanf(fh_input, "%d", &finput) != EOF)
+    {
+        
+        numbers[lines] = finput;
+        printf("file line %d: %d\n", lines + 1, finput);
+        lines++;
+    }
+
+    int total = 0;
+    for (int i = 0; i < lines; i++)
+        total = i;
+    printf("Average: %d\n", total + 1);
+
+    fclose(fh_input);
+ /*
+    fh_input = fopen("in.txt", "r");
+
+
+    fgets(buffer, 256, fh_input);
+    printf("Buffer: %s\n", buffer);
+
+    fclose(fh_input);
+    */
+
+    return 0;
+>>>>>>> 7ab03322a29844b015adff978639f53059af656d
 }
