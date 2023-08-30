@@ -5,6 +5,7 @@ typedef struct aluno {
     char nome[50];
     float nota1;
     float nota2;
+    float nota3;
 
 } aluno;
 
@@ -24,18 +25,24 @@ int main() {
 
     for (int i = 0; i < MAXALUNOS; i++)
     {
-        printf("\nDigite o nome do aluno: ");
+        printf("\nDigite o nome do aluno %d: ", i + 1);
         fgets(cadastros[i].nome, sizeof(cadastros[i].nome), stdin);
-        getchar();
 
         printf("\nDigite a primeira nota: ");
         scanf("%f", &cadastros[i].nota1);
+        getchar();
 
         printf("\nDigite a segunda nota: ");
         scanf("%f", &cadastros[i].nota2);
+        getchar();
 
-        fprintf(arqv, "%s; %.2f; %.2f;", cadastros[i].nome, cadastros[i].nota1, cadastros[i].nota2);
+        printf("\nDigite a terceira nota: ");
+        scanf("%f", &cadastros[i].nota3);
+        getchar();
 
+        fprintf(arqv, "%s; %.2f; %.2f;\n", cadastros[i].nome, cadastros[i].nota1, cadastros[i].nota2);
+        printf("\nDados salvos no arquivo!");
+        
     }
     fclose(arqv);
 
