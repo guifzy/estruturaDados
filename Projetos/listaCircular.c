@@ -78,10 +78,56 @@ lista* inserir_final(lista* l, int num){
     return l;
 }
 
-lista* remover(){
+lista* remover(lista* l){
+    no* aux = l->inicio;
+    int busca;
+    int contador = 1;
+
+    if(l->inicio == NULL)
+    {
+        printf("\nLista sem nenhum valor preenchido.");
+        return l;
+    }
+
+    printf("\nDigite o numero que deseja remover da lista: ");
+    scanf("%d", &busca);
+    do
+    {
+        if (aux->valor == busca)
+        {
+            if (aux->prox == aux)
+            {   //se so tover um elemento
+                l->inicio = NULL;
+                l->fim = NULL;
+            }else
+            {
+                //se tiver mais de um elemento
+                aux->ant->prox = aux->prox;
+                aux->prox->ant = aux->ant;
+
+                if (aux == l->inicio)
+                {   //se tiver no começo
+                    l->inicio = aux->prox;
+                }
+                if (aux == l->fim)
+                {   //se tiver no fim
+                    l->fim = aux->ant;
+                }
+            }
+            printf("Numero: %d | Posicao: %d\n", aux->valor, contador);
+            free(aux);
+            l->tam--;
+            printf("Numero removido com sucesso!\n");
+                 
+            return l;     
+        }
+        contador++;
+        aux = aux->prox;
+        
+    } while (aux != l->inicio);
     
-
-
+    printf("Numero %d nao encontrado na lista.\n", busca);
+    return l;
 }
 
 void buscar(lista* l){
@@ -95,7 +141,7 @@ void buscar(lista* l){
         printf("\nLista sem nenhum valor preenchido.");
         return;
     }
-    printf("\nDigite o numero qu e deseja busacar na lista: ");
+    printf("\nDigite o numero que deseja busacar na lista: ");
     scanf("%d", &busca);
     
     do
@@ -112,7 +158,7 @@ void buscar(lista* l){
     } while (aux != l->inicio);
 
     if (!achou) {
-        printf("Número %d não encontrado na lista.\n", busca);
+        printf("Numero %d nao encontrado na lista.\n", busca);
     }
 
 }
@@ -123,7 +169,7 @@ void imprimir(lista* l){
 
     if(l->inicio == NULL)
     {
-        printf("Lista sem nenhum valor preenchido.");
+        printf("Lista sem nenhum valor preenchido.\n");
         return;
     }
 
@@ -179,6 +225,7 @@ int main(){
                 break;
 
             case 3://remove
+                l = remover(l);
                 break;
 
             case 4://imprime
